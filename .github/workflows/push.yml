@@ -33,8 +33,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME_YHNOH }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_YHNOH }}
+          username: ${{ secrets.DOCKER_USERNAME_YHNOH }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN_YHNOH }}
 
       - name: PrepareReg Names
         id: read-docker-image-identifiers
