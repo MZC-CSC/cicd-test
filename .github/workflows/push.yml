@@ -17,12 +17,10 @@ jobs:
     steps:
       - name: Extract Version
         id: version_step
-        run: echo "##[set-output name=version;]$(echo '${{ github.event.head_commit.message }}' | egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
-      
-        #run: |
-        #  echo "##[set-output name=version;]VERSION=${GITHUB_REF#$"refs/tags/v"}"
-        #  echo "##[set-output name=version_tag;]$GITHUB_REPOSITORY:${GITHUB_REF#$"refs/tags/v"}"
-        #  echo "##[set-output name=latest_tag;]$GITHUB_REPOSITORY:latest"
+        run: |
+          echo "##[set-output name=version;]VERSION=${GITHUB_REF#$"refs/tags/v"}"
+          echo "##[set-output name=version_tag;]$GITHUB_REPOSITORY:${GITHUB_REF#$"refs/tags/v"}"
+          echo "##[set-output name=latest_tag;]$GITHUB_REPOSITORY:latest"
       - name: Print Version
         run: |
           echo ${{steps.version_step.outputs.version_tag}}
@@ -49,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ steps.extract_version_name.outputs.version }}
+          tags: user/app:lastest
           build-args: |
             ${{steps.version_step.outputs.version}}
           
