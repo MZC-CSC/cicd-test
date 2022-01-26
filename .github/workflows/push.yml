@@ -47,6 +47,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          username: ${{ secrets.DOCKER_USERNAME_YHNOH }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN_YHNOH }}
           tags: user/app:lastest
           build-args: |
             ${{steps.version_step.outputs.version}}
