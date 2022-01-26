@@ -46,8 +46,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: |
-            ${{env.VERSION_TAG}}
-            ${{env.LASTEST_TAG}}
-          build-args: |
-            ${{steps.version_step.outputs.version}}
+          tag_with_ref: true
+          #tags: |
+          #  ${{env.VERSION_TAG}}
+          #  ${{env.LASTEST_TAG}}
+          #build-args: |
+          #  ${{steps.version_step.outputs.version}}
